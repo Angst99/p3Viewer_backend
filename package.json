@@ -1,0 +1,20 @@
+{
+  "name": "node_demo1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "async-lock": "^1.4.1",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "moment": "^2.30.1",
+    "mysql": "^2.18.1",
+    "progress": "^2.0.3",
+    "ws": "^8.18.0"
+  }
+}
