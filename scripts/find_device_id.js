@@ -6,7 +6,9 @@ const wss = new WebSocket.Server({port: 8080});
 
 // const dbConnection = require("../db/db");
 
-const filePath = 'data.json';
+const path = require('path');
+
+const filePath = path.join(__dirname, '../', 'data.json');
 
 let jsonData = [];
 
@@ -161,6 +163,13 @@ async function myfunc(milliseconds) {
         }
 
         if (!isFind) {
+            for (let item of jsonData) {
+                //json文件有，但是这次扫描没有也放入map2，可能为关机
+                if (!map.has(item.device_id)) {
+                    map2.set(`${item.device_id}`, item.IP);
+                }
+            }
+            //json文件没有或者有但信息不同，但是这次扫描有放入map2
             map2.set(`${id}`, map.get(id));
         }
     }
@@ -184,7 +193,10 @@ async function myfunc(milliseconds) {
         });
     }
     const data = JSON.stringify(jsonData, null, 2);
+    console.log(data);
     fs.writeFileSync(filePath, data);
+
+    console.log('Data saved to data.json');
 
     isRunning = false;
 
